@@ -1,0 +1,14 @@
+<div class="container">
+    <h1 class="text-center margin-bottom">Todo List</h1>
+</div>
+<app-add-todo (todoAdd)="addTodo($event)"></app-add-todo>
+<!-- <app-add-todo (todoAdd)="addTodo($event)"></app-add-todo> -->
+<h4 class="font-italic">My Todos</h4>
+<!-- MESSAGE DISPLAY -->
+<div *ngIf="this.todos.length==0; else elseBlock">No Todos to display</div>
+<ng-template #elseBlock>
+    <!-- DISPLAYING TODOS USING FOR LOOP -->
+    <div *ngFor="let todo of todos; index as i">
+        <app-todo-item [todo]="todo" (todoDelete)="deleteTodo($event)" [i]="i" (todoCheckbox)="toggleTodo($event)"></app-todo-item>
+    </div>
+</ng-template>
